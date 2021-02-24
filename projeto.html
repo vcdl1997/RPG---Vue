@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Projeto - RPG</title>
+	<script src="https://unpkg.com/vue"></script>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<section id="app">
+
+		<div id="players">
+			
+			<div class="player">
+				<h2>Jogador</h2>
+				<div class="container-life">
+					<div class="life" :class="[{red: jogador <= 20}, {green: jogador > 20}]" :style="[{width: jogador + '%'}]"></div>
+				</div>
+				<span>{{jogador}}%</span>
+			</div> 
+
+			<div class="player">
+				<h2>Monstro</h2>
+				<div class="container-life">
+					<div class="life" :class="[{red: monstro <= 20}, {green: monstro > 20}]" :style="[{width: monstro + '%'}]"></div>
+				</div>
+				<span>{{monstro}}%</span>
+			</div>
+
+		</div>
+
+		<br><br>
+
+		<div v-show="endGame" id="result">
+			<h2 v-if="jogador == 0">JOGADOR PERDEU</h2>
+			<h2 v-else>JOGADOR VENCEU</h2>
+		</div>
+
+		<br><br>
+
+		<div id="container-buttons">
+
+			<template v-if="!endGame">
+				<button @click="ataque" class="button red distance-buttons">ATAQUE</button>
+				<button @click="ataqueEspecial" class="button orange distance-buttons">ATAQUE ESPECIAL</button>
+				<button @click="curar" class="button green distance-buttons">CURAR</button>
+				<button @click="desistir" class="button grey">DESISTIR</button>
+			</template>
+
+			<template v-else>
+				<button @click="recomecar" class="button blue">RECOMEÇAR</button>
+			</template>
+
+		</div>
+
+		<br><br>
+
+		<div id="actions" v-show="acoes > 0"> </div>
+		
+	</section>
+
+
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
